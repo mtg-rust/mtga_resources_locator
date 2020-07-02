@@ -28,6 +28,12 @@ mod tests {
     use super::*;
 
     #[test]
+    fn assets_data_dir_works() {
+        assert_eq!(assets_data_dir().is_some(), true);
+        assert_eq!(assets_data_dir().expect("Value is empty").into_os_string().is_empty(), false);
+    }
+
+    #[test]
     fn assets_data_dir_macos_works() {
         assert_eq!(assets_data_dir_macos().into_os_string().is_empty(), false);
     }
