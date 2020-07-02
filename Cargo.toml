@@ -8,3 +8,6 @@ edition = "2018"
 
 [dependencies]
 dirs = "3.0.0"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.7"

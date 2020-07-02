@@ -1,25 +1,12 @@
-use std::env;
 use std::path::PathBuf;
 
-extern crate dirs;
+#[cfg_attr(target_os="macos", path="path_locator/macos.rs")]
+#[cfg_attr(target_os="windows", path="path_locator/windows.rs")]
+mod path_locator;
 
 
 pub fn assets_data_dir() -> Option<PathBuf> {
-    match env::consts::OS {
-        "macos" => Some(assets_data_dir_macos()),
-        _ => None
-    }
-}
-
-
-fn assets_data_dir_macos() -> PathBuf {
-    let home_dir = match dirs::home_dir() {
-        Some(dir) => dir,
-        None => PathBuf::from("~"),
-    };
-    let game_relative_path: PathBuf = PathBuf::from("Library/Application Support/com.wizards.mtga/Downloads/Data");
-
-    [home_dir, game_relative_path].iter().collect()
+    Some(path_locator::assets_data_dir())
 }
 
 
@@ -33,8 +20,4 @@ mod tests {
         assert_eq!(assets_data_dir().expect("Value is empty").into_os_string().is_empty(), false);
     }
 
-    #[test]
-    fn assets_data_dir_macos_works() {
-        assert_eq!(assets_data_dir_macos().into_os_string().is_empty(), false);
-    }
 }
