@@ -19,8 +19,8 @@ jobs:
           keys:
             - v4-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run:
-          name: Build all targets
-          command: cargo build --target x86_64-apple-darwin
+          name: Build macOS
+          command: cargo build --all --target x86_64-apple-darwin
       - save_cache:
           paths:
             - /usr/local/cargo/registry
@@ -30,7 +30,7 @@ jobs:
           key: v4-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run:
           name: Run all tests
-          command: cargo test --all
+          command: cargo test --all --target x86_64-apple-darwin
 
 workflows:
   version: 2
