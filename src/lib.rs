@@ -24,4 +24,10 @@ mod tests {
         assert_eq!(assets_data_dir().expect("Value is empty").into_os_string().is_empty(), false);
     }
 
+
+    #[test]
+    fn logs_dir_works() {
+        assert_eq!(logs_dir().is_some(), true);
+        assert_eq!(logs_dir().expect("Value is empty").into_os_string().is_empty(), false);
+    }
 }
