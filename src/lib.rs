@@ -9,6 +9,10 @@ pub fn assets_data_dir() -> Option<PathBuf> {
     Some(path_locator::assets_data_dir())
 }
 
+pub fn logs_dir() -> Option<PathBuf> {
+    Some(path_locator::logs_dir())
+}
+
 
 #[cfg(test)]
 mod tests {
