@@ -1,7 +1,9 @@
-use std::path::PathBuf;
-
 extern crate dirs;
 extern crate winreg;
+
+use std::path::PathBuf;
+use winreg::enums::*;
+use winreg::RegKey;
 
 pub fn assets_data_dir() -> PathBuf {
     let hklm = RegKey::predef(HKEY_LOCAL_MACHINE);
@@ -11,7 +13,10 @@ pub fn assets_data_dir() -> PathBuf {
 }
 
 pub fn logs_dir() -> PathBuf {
-    let home_dir = Some(dirs::home_dir());
+    let home_dir = match dirs::home_dir() {
+        Some(dir) => dir,
+        None => PathBuf::from(r"C:\"),
+    }
     let logs_relative_path: PathBuf = PathBuf::from(r"AppData\LocalLow\Wizards Of The Coast\MTGA");
 
     [home_dir, logs_relative_path].iter().collect()
