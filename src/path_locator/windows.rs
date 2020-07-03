@@ -1,6 +1,6 @@
 use std::path::PathBuf;
 
-extern crate dirs
+extern crate dirs;
 extern crate winreg;
 
 pub fn assets_data_dir() -> PathBuf {
