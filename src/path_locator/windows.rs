@@ -12,7 +12,7 @@ pub fn assets_data_dir() -> PathBuf {
 
 pub fn logs_dir() -> PathBuf {
     let home_dir = Some(dirs::home_dir());
-    let logs_relative_path: PathBuf = PathBuf::from(r"AppData\LocalLow\Wizards Of The Coast\MTGA";
+    let logs_relative_path: PathBuf = PathBuf::from(r"AppData\LocalLow\Wizards Of The Coast\MTGA");
 
     [home_dir, logs_relative_path].iter().collect()
 }
