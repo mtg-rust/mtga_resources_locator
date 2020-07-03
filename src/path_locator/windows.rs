@@ -16,7 +16,7 @@ pub fn logs_dir() -> PathBuf {
     let home_dir = match dirs::home_dir() {
         Some(dir) => dir,
         None => PathBuf::from(r"C:\"),
-    }
+    };
     let logs_relative_path: PathBuf = PathBuf::from(r"AppData\LocalLow\Wizards Of The Coast\MTGA");
 
     [home_dir, logs_relative_path].iter().collect()
