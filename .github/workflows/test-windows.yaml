@@ -19,6 +19,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Add fake registry key
+      run: REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Wizards of the Coast\MTGArena /f /v Path /t REG_SZ /d "C:\Magic"
     - name: Build
       run: cargo build --verbose
     - name: Run tests
