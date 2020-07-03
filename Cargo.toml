@@ -3,8 +3,16 @@ name = "mtga_resources_locator"
 version = "0.1.0"
 authors = ["Michele Gargiulo <michele@grg.io>"]
 edition = "2018"
+license = "MIT"
+license-file = "LICENSE"
+description = "A little utility that returns the paths of MTGA logs and assets"
+readme = "README.md"
+homepage = "https://github.com/mtg-rust/mtga_resources_locator"
+repository = "https://github.com/mtg-rust/mtga_resources_locator"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+exclude = [
+    ".github/",
+]
 
 [dependencies]
 dirs = "3.0.0"
