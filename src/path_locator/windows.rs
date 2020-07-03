@@ -1,15 +1,16 @@
 extern crate dirs;
 extern crate winreg;
 
+use std::io;
 use std::path::PathBuf;
 use winreg::enums::*;
 use winreg::RegKey;
 
-pub fn assets_data_dir() -> PathBuf {
+pub fn assets_data_dir() -> io::Result<PathBuf, io::Error> {
     let hklm = RegKey::predef(HKEY_LOCAL_MACHINE);
-    let mtga_regkey = hklm.open_subkey_with_flags(r"SOFTWARE\WOW6432Node\Wizards of the Coast\MTGArena",
-        KEY_READ).unwrap();
-    PathBuf::from(mtga_regkey.get_value("Path").unwrap())
+    let mtga_reg_subkey = hklm.open_subkey(r"SOFTWARE\WOW6432Node\Wizards of the Coast\MTGArena");
+    let path_reg_key: String = mtga_reg_subkey.get_value("Path")?;
+    PathBuf::from(path_reg_key)
 }
 
 pub fn logs_dir() -> PathBuf {
