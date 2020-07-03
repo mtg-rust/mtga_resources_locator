@@ -11,3 +11,7 @@ The library exposes two functions:
 * `logs_dir()`: returns the `PathBuf` relative to the folder where logs are stored.
 
 The method should work on both Windows and macOS. Actually only macOS has been tested.
+
+## TODO
+
+* Conform to the [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
