@@ -1,0 +1,24 @@
+name: Tests
+
+on: [push, pull_request]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+        matrix:
+            os: [macos-latest, windows-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Add Windows fake registry key
+      if: ${{ matrix.os == 'windows-latest' }}
+      run: REG ADD "HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Wizards of the Coast\MTGArena" /f /v Path /t REG_SZ /d "C:\Magic"
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
