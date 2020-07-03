@@ -1,3 +1,6 @@
+![](https://github.com/mtg-rust/mtga_resources_locator/workflows/Tests/badge.svg)
+
+
 # MTGA Resources Locator
 Utility that returns where MTGA data is stored.
 
