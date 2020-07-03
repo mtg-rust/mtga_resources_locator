@@ -6,11 +6,12 @@ use std::path::PathBuf;
 use winreg::enums::*;
 use winreg::RegKey;
 
-pub fn assets_data_dir() -> io::Result<PathBuf, io::Error> {
+pub fn assets_data_dir() -> io::Result<PathBuf> {
     let hklm = RegKey::predef(HKEY_LOCAL_MACHINE);
     let mtga_reg_subkey = hklm.open_subkey(r"SOFTWARE\WOW6432Node\Wizards of the Coast\MTGArena");
     let path_reg_key: String = mtga_reg_subkey.get_value("Path")?;
-    PathBuf::from(path_reg_key)
+
+    Ok(PathBuf::from(path_reg_key))
 }
 
 pub fn logs_dir() -> PathBuf {
@@ -30,7 +31,9 @@ mod tests {
 
     #[test]
     fn assets_data_dir_windows_works() {
-        assert_eq!(assets_data_dir().into_os_string().is_empty(), false);
+        let func_output = assets_data_dir();
+        assert!(func_output.is_ok());
+        assert_eq!(func_output.unwrap().into_os_string().is_empty(), false);
     }
 
     #[test]
